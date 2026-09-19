@@ -14,21 +14,9 @@ export default function ReservationSection({ isOpenModal, onCloseModal, selected
   const [confirmedBooking, setConfirmedBooking] = useState(null);
 
   const seatingOptions = [
-    {
-      id: 'dastarkhwan',
-      title: 'Royal Dastarkhwan',
-      desc: 'Plush velvet bolsters around handcrafted copper Trami platters.'
-    },
-    {
-      id: 'dining-hall',
-      title: 'Candlelit Hall',
-      desc: 'Mahogany dining tables with ambient candle lighting & live acoustic santoor.'
-    },
-    {
-      id: 'garden',
-      title: 'Chinar Pavilion',
-      desc: 'Glass conservatory enclosed under starry night sky with garden views.'
-    }
+    { id: 'dastarkhwan', title: 'Royal Dastarkhwan' },
+    { id: 'dining-hall', title: 'Candlelit Hall' },
+    { id: 'garden', title: 'Chinar Pavilion' }
   ];
 
   const handleBook = (e) => {
@@ -48,155 +36,151 @@ export default function ReservationSection({ isOpenModal, onCloseModal, selected
   };
 
   const formContent = (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-xl mx-auto">
       {!confirmedBooking ? (
-        <form onSubmit={handleBook} className="glass-card p-5 sm:p-7 rounded-2xl border border-gold-500/30 shadow-2xl relative">
+        <form onSubmit={handleBook} className="glass-card p-4 sm:p-5 rounded-xl border border-gold-500/30 shadow-xl relative">
           
-          <div className="text-center max-w-lg mx-auto mb-6">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-gold-500/30 bg-gold-500/10 mb-2">
+          <div className="text-center max-w-xs mx-auto mb-4">
+            <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-gold-500/30 bg-gold-500/10 mb-1">
               <Sparkles className="w-3 h-3 text-gold-400" />
-              <span className="text-[10px] uppercase tracking-[0.25em] font-serif text-gold-300">
-                Table Reservation Engine
+              <span className="text-[9px] uppercase tracking-widest font-serif text-gold-300">
+                Table Reservation
               </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-serif font-extrabold text-white mb-1">
+            <h2 className="text-lg sm:text-xl font-serif font-bold text-white">
               Reserve Your <span className="text-gold-gradient">Royal Seat</span>
             </h2>
-            <p className="text-stone-400 text-xs">
-              Experience authentic Wazwan hospitality for intimate dinners, family gatherings, and banquets.
-            </p>
           </div>
 
           {/* Step 1: Party & Timing */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+          <div className="grid grid-cols-3 gap-2.5 mb-3.5">
             {/* Guests */}
             <div>
-              <label className="block text-[11px] font-serif uppercase tracking-wider text-gold-400 mb-1 flex items-center gap-1.5">
-                <Users className="w-3.5 h-3.5" /> Party Size
+              <label className="block text-[10px] font-serif uppercase tracking-wider text-gold-400 mb-1 flex items-center gap-1">
+                <Users className="w-3 h-3" /> Guests
               </label>
               <select
                 value={partySize}
                 onChange={(e) => setPartySize(Number(e.target.value))}
-                className="w-full px-3 py-2 rounded-lg bg-royal-surface border border-gold-500/20 text-stone-200 text-xs focus:outline-none focus:border-gold-500"
+                className="w-full px-2.5 py-1.5 rounded-lg bg-royal-surface border border-gold-500/20 text-stone-200 text-xs focus:outline-none focus:border-gold-500"
               >
-                {[1, 2, 3, 4, 5, 6, 7, 8, 10, 12].map((num) => (
+                {[1, 2, 3, 4, 5, 6, 8, 10, 12].map((num) => (
                   <option key={num} value={num} className="bg-royal-obsidian">
                     {num} {num === 1 ? 'Guest' : 'Guests'}
                   </option>
                 ))}
-                <option value={15} className="bg-royal-obsidian">12+ Private Banquet</option>
               </select>
             </div>
 
             {/* Date */}
             <div>
-              <label className="block text-[11px] font-serif uppercase tracking-wider text-gold-400 mb-1 flex items-center gap-1.5">
-                <CalendarIcon className="w-3.5 h-3.5" /> Reservation Date
+              <label className="block text-[10px] font-serif uppercase tracking-wider text-gold-400 mb-1 flex items-center gap-1">
+                <CalendarIcon className="w-3 h-3" /> Date
               </label>
               <input
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-royal-surface border border-gold-500/20 text-stone-200 text-xs focus:outline-none focus:border-gold-500"
+                className="w-full px-2.5 py-1.5 rounded-lg bg-royal-surface border border-gold-500/20 text-stone-200 text-xs focus:outline-none focus:border-gold-500"
                 required
               />
             </div>
 
             {/* Time */}
             <div>
-              <label className="block text-[11px] font-serif uppercase tracking-wider text-gold-400 mb-1 flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5" /> Preferred Time
+              <label className="block text-[10px] font-serif uppercase tracking-wider text-gold-400 mb-1 flex items-center gap-1">
+                <Clock className="w-3 h-3" /> Time
               </label>
               <select
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-royal-surface border border-gold-500/20 text-stone-200 text-xs focus:outline-none focus:border-gold-500"
+                className="w-full px-2.5 py-1.5 rounded-lg bg-royal-surface border border-gold-500/20 text-stone-200 text-xs focus:outline-none focus:border-gold-500"
               >
                 {['17:30', '18:30', '19:30', '20:30', '21:30'].map((t) => (
                   <option key={t} value={t} className="bg-royal-obsidian">
-                    {t} (Dinner)
+                    {t}
                   </option>
                 ))}
               </select>
             </div>
           </div>
 
-          {/* Step 2: Seating Zone Selection */}
-          <div className="mb-5">
-            <label className="block text-[11px] font-serif uppercase tracking-wider text-gold-400 mb-2 flex items-center gap-1.5">
-              <Crown className="w-3.5 h-3.5" /> Dining Atmosphere
+          {/* Step 2: Seating Zone Pills */}
+          <div className="mb-3.5">
+            <label className="block text-[10px] font-serif uppercase tracking-wider text-gold-400 mb-1.5 flex items-center gap-1">
+              <Crown className="w-3 h-3" /> Atmosphere
             </label>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2">
               {seatingOptions.map((zone) => (
-                <div
+                <button
                   key={zone.id}
+                  type="button"
                   onClick={() => setSeatingZone(zone.id)}
-                  className={`p-3.5 rounded-xl border cursor-pointer transition-all duration-300 ${
+                  className={`py-1.5 px-2 rounded-lg border text-[11px] font-serif font-medium text-center transition-all ${
                     seatingZone === zone.id
-                      ? 'bg-gold-500/10 border-gold-500 shadow-[0_0_12px_rgba(212,175,55,0.2)]'
-                      : 'bg-royal-surface border-stone-800 hover:border-gold-500/40'
+                      ? 'bg-gold-500/15 border-gold-500 text-gold-300 shadow-sm'
+                      : 'bg-royal-surface border-stone-800 text-stone-400 hover:border-stone-700'
                   }`}
                 >
-                  <h4 className="font-serif font-bold text-xs text-white mb-1">{zone.title}</h4>
-                  <p className="text-stone-400 text-[11px] leading-snug">{zone.desc}</p>
-                </div>
+                  {zone.title}
+                </button>
               ))}
             </div>
           </div>
 
           {/* Step 3: Contact Details */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+          <div className="grid grid-cols-3 gap-2.5 mb-3.5">
             <div>
-              <label className="block text-[11px] font-serif uppercase tracking-wider text-stone-400 mb-1">Full Name</label>
+              <label className="block text-[10px] font-serif uppercase tracking-wider text-stone-400 mb-1">Full Name</label>
               <input
                 type="text"
-                placeholder="e.g. Lord Alexander"
+                placeholder="Lord Alexander"
                 value={guestName}
                 onChange={(e) => setGuestName(e.target.value)}
                 required
-                className="w-full px-3 py-2 rounded-lg bg-royal-surface border border-gold-500/20 text-stone-200 text-xs focus:outline-none focus:border-gold-500 placeholder:text-stone-600"
+                className="w-full px-2.5 py-1.5 rounded-lg bg-royal-surface border border-gold-500/20 text-stone-200 text-xs focus:outline-none focus:border-gold-500 placeholder:text-stone-600"
               />
             </div>
             <div>
-              <label className="block text-[11px] font-serif uppercase tracking-wider text-stone-400 mb-1">Email Address</label>
+              <label className="block text-[10px] font-serif uppercase tracking-wider text-stone-400 mb-1">Email</label>
               <input
                 type="email"
                 placeholder="alexander@domain.com"
                 value={guestEmail}
                 onChange={(e) => setGuestEmail(e.target.value)}
                 required
-                className="w-full px-3 py-2 rounded-lg bg-royal-surface border border-gold-500/20 text-stone-200 text-xs focus:outline-none focus:border-gold-500 placeholder:text-stone-600"
+                className="w-full px-2.5 py-1.5 rounded-lg bg-royal-surface border border-gold-500/20 text-stone-200 text-xs focus:outline-none focus:border-gold-500 placeholder:text-stone-600"
               />
             </div>
             <div>
-              <label className="block text-[11px] font-serif uppercase tracking-wider text-stone-400 mb-1">Phone Number</label>
+              <label className="block text-[10px] font-serif uppercase tracking-wider text-stone-400 mb-1">Phone</label>
               <input
                 type="tel"
-                placeholder="+1 (555) 000-0000"
+                placeholder="+1 555-000-0000"
                 value={guestPhone}
                 onChange={(e) => setGuestPhone(e.target.value)}
                 required
-                className="w-full px-3 py-2 rounded-lg bg-royal-surface border border-gold-500/20 text-stone-200 text-xs focus:outline-none focus:border-gold-500 placeholder:text-stone-600"
+                className="w-full px-2.5 py-1.5 rounded-lg bg-royal-surface border border-gold-500/20 text-stone-200 text-xs focus:outline-none focus:border-gold-500 placeholder:text-stone-600"
               />
             </div>
           </div>
 
           {/* Special Requests */}
-          <div className="mb-5">
-            <label className="block text-[11px] font-serif uppercase tracking-wider text-stone-400 mb-1">Special Requests / Dietary Notes</label>
-            <textarea
-              rows={2}
-              placeholder="e.g. Anniversary celebration, spice preferences, or dietary requirements..."
+          <div className="mb-4">
+            <label className="block text-[10px] font-serif uppercase tracking-wider text-stone-400 mb-1">Special Requests</label>
+            <input
+              type="text"
+              placeholder="e.g. Anniversary celebration, spice preferences..."
               value={specialRequest}
               onChange={(e) => setSpecialRequest(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg bg-royal-surface border border-gold-500/20 text-stone-200 text-xs focus:outline-none focus:border-gold-500 placeholder:text-stone-600 resize-none"
+              className="w-full px-2.5 py-1.5 rounded-lg bg-royal-surface border border-gold-500/20 text-stone-200 text-xs focus:outline-none focus:border-gold-500 placeholder:text-stone-600"
             />
           </div>
 
           {/* Submit CTA */}
           <button
             type="submit"
-            className="w-full py-3 rounded-full bg-gold-gradient text-royal-obsidian font-serif text-xs font-bold uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-300"
+            className="w-full py-2.5 rounded-full bg-gold-gradient text-royal-obsidian font-serif text-[11px] font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all"
           >
             Confirm Royal Reservation
           </button>
@@ -206,30 +190,25 @@ export default function ReservationSection({ isOpenModal, onCloseModal, selected
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="glass-card p-6 rounded-2xl border border-gold-500/60 shadow-2xl text-center relative overflow-hidden max-w-md mx-auto"
+          className="glass-card p-5 rounded-xl border border-gold-500/60 shadow-xl text-center relative max-w-sm mx-auto"
         >
-          <div className="w-12 h-12 rounded-full bg-gold-500/20 border-2 border-gold-400 flex items-center justify-center mx-auto mb-4 text-gold-400 shadow-[0_0_15px_rgba(212,175,55,0.5)]">
-            <CheckCircle2 className="w-6 h-6" />
+          <div className="w-10 h-10 rounded-full bg-gold-500/20 border border-gold-400 flex items-center justify-center mx-auto mb-3 text-gold-400 shadow-sm">
+            <CheckCircle2 className="w-5 h-5" />
           </div>
 
-          <span className="text-[10px] font-serif uppercase tracking-[0.25em] text-gold-400 block mb-1">
+          <span className="text-[9px] font-serif uppercase tracking-widest text-gold-400 block mb-0.5">
             Reservation Confirmed
           </span>
 
-          <h3 className="text-xl font-serif font-bold text-white mb-1">
+          <h3 className="text-lg font-serif font-bold text-white mb-1">
             Welcome to <span className="text-gold-gradient">Zayka</span>, {confirmedBooking.name}
           </h3>
 
-          <p className="text-stone-300 text-xs mb-5">
-            Table reservation recorded. Voucher sent to <span className="text-gold-400">{confirmedBooking.email}</span>.
+          <p className="text-stone-300 text-[11px] mb-4">
+            Pass Code: <span className="text-gold-400 font-bold">{confirmedBooking.refCode}</span>
           </p>
 
-          {/* Pass Ticket Box */}
-          <div className="bg-royal-surface/90 border border-gold-500/30 p-4 rounded-xl text-left mb-5 space-y-2 font-serif text-xs">
-            <div className="flex justify-between border-b border-gold-500/20 pb-1.5">
-              <span className="text-stone-400">Pass Code:</span>
-              <span className="text-gold-400 font-bold">{confirmedBooking.refCode}</span>
-            </div>
+          <div className="bg-royal-surface/90 border border-gold-500/30 p-3 rounded-lg text-left mb-4 space-y-1.5 font-serif text-[11px]">
             <div className="flex justify-between">
               <span className="text-stone-400">Date & Time:</span>
               <span className="text-white">{confirmedBooking.date} at {confirmedBooking.time}</span>
@@ -239,7 +218,7 @@ export default function ReservationSection({ isOpenModal, onCloseModal, selected
               <span className="text-white">{confirmedBooking.partySize} Guests</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-stone-400">Seating Zone:</span>
+              <span className="text-stone-400">Atmosphere:</span>
               <span className="text-gold-300">{confirmedBooking.seatingZone}</span>
             </div>
           </div>
@@ -249,9 +228,9 @@ export default function ReservationSection({ isOpenModal, onCloseModal, selected
               setConfirmedBooking(null);
               if (onCloseModal) onCloseModal();
             }}
-            className="px-6 py-2.5 rounded-full bg-gold-gradient text-royal-obsidian font-serif text-xs font-bold uppercase tracking-widest shadow-md"
+            className="px-5 py-2 rounded-full bg-gold-gradient text-royal-obsidian font-serif text-[10px] font-bold uppercase tracking-widest shadow-sm"
           >
-            Done & Return to Journey
+            Return to Journey
           </button>
         </motion.div>
       )}
@@ -260,11 +239,11 @@ export default function ReservationSection({ isOpenModal, onCloseModal, selected
 
   if (isOpenModal) {
     return (
-      <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-        <div className="relative w-full max-w-3xl my-auto">
+      <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 overflow-y-auto">
+        <div className="relative w-full max-w-xl my-auto">
           <button
             onClick={onCloseModal}
-            className="absolute -top-10 right-0 text-stone-300 hover:text-white font-serif text-[11px] uppercase tracking-wider bg-royal-surface px-3 py-1 rounded-full border border-gold-500/30"
+            className="absolute -top-9 right-0 text-stone-300 hover:text-white font-serif text-[10px] uppercase tracking-wider bg-royal-surface px-2.5 py-1 rounded-full border border-gold-500/30"
           >
             ✕ Close
           </button>
@@ -275,8 +254,8 @@ export default function ReservationSection({ isOpenModal, onCloseModal, selected
   }
 
   return (
-    <section id="reservation" className="py-16 md:py-20 bg-royal-obsidian relative border-t border-gold-500/10">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="reservation" className="py-12 md:py-14 bg-royal-obsidian relative border-t border-gold-500/10">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {formContent}
       </div>
     </section>
