@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Menu as MenuIcon, X, Calendar, Flame } from 'lucide-react';
+import { Volume2, VolumeX, Menu as MenuIcon, X, Calendar, Flame, ShoppingBag } from 'lucide-react';
 import { royalSynth } from '../utils/audioSynth';
+import { useCart } from '../context/CartContext';
 
 export default function Navbar({ onOpenReservation }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAudioActive, setIsAudioActive] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { itemCount, setIsCartOpen } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,6 +82,20 @@ export default function Navbar({ onOpenReservation }) {
 
         {/* Actions & Sound Toggle */}
         <div className="hidden md:flex items-center gap-3">
+          {/* Cart Button */}
+          <button
+            onClick={() => setIsCartOpen(true)}
+            className="relative p-2 rounded-full border border-gold-500/30 bg-royal-surface/80 text-gold-300 hover:border-gold-400 transition-all group"
+            title="Open Royal Cart"
+          >
+            <ShoppingBag className="w-4 h-4 group-hover:scale-110 transition-transform" />
+            {itemCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-gold-gradient text-royal-obsidian text-[10px] font-mono font-bold flex items-center justify-center shadow-md animate-bounce">
+                {itemCount}
+              </span>
+            )}
+          </button>
+
           {/* Ambient Sound Toggle */}
           <button
             onClick={toggleAudio}
@@ -115,6 +131,18 @@ export default function Navbar({ onOpenReservation }) {
 
         {/* Mobile menu trigger */}
         <div className="flex md:hidden items-center gap-2">
+          <button
+            onClick={() => setIsCartOpen(true)}
+            className="relative p-1.5 rounded-full border border-gold-500/30 text-gold-400"
+          >
+            <ShoppingBag className="w-4 h-4" />
+            {itemCount > 0 && (
+              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-gold-500 text-royal-obsidian text-[9px] font-mono font-bold flex items-center justify-center">
+                {itemCount}
+              </span>
+            )}
+          </button>
+
           <button
             onClick={toggleAudio}
             className={`p-1.5 rounded-full border text-xs ${

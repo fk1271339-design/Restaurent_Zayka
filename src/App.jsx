@@ -10,6 +10,9 @@ import GallerySection from './components/GallerySection';
 import TestimonialsSection from './components/TestimonialsSection';
 import ReservationSection from './components/ReservationSection';
 import ContactFooter from './components/ContactFooter';
+import CartDrawer from './components/CartDrawer';
+import ToastNotification from './components/ToastNotification';
+import { CartProvider } from './context/CartContext';
 
 export default function App() {
   const [isReservationModalOpen, setIsReservationModalOpen] = useState(false);
@@ -41,44 +44,51 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-royal-obsidian text-stone-200 selection:bg-gold-500 selection:text-royal-obsidian">
-      {/* Navigation Bar */}
-      <Navbar onOpenReservation={() => setIsReservationModalOpen(true)} />
+    <CartProvider>
+      <div className="min-h-screen bg-royal-obsidian text-stone-200 selection:bg-gold-500 selection:text-royal-obsidian relative">
+        {/* Navigation Bar */}
+        <Navbar onOpenReservation={() => setIsReservationModalOpen(true)} />
 
-      {/* Hero Cinematic Scroll-driven Journey (Outside -> Entrance -> Table -> Food) */}
-      <ScrollJourney onOpenReservation={() => setIsReservationModalOpen(true)} />
+        {/* Hero Cinematic Scroll-driven Journey */}
+        <ScrollJourney onOpenReservation={() => setIsReservationModalOpen(true)} />
 
-      {/* Heritage & Story */}
-      <StorySection />
+        {/* Heritage & Story */}
+        <StorySection />
 
-      {/* Royal Experiences & Showcases Carousel (Inspired by Sample Flyers) */}
-      <RoyalExperiencesCarousel onOpenReservation={() => setIsReservationModalOpen(true)} />
+        {/* Royal Experiences & Showcases Carousel */}
+        <RoyalExperiencesCarousel onOpenReservation={() => setIsReservationModalOpen(true)} />
 
-      {/* Royal Menu */}
-      <MenuSection onAddToReservation={handleAddToReservation} />
+        {/* Royal Menu */}
+        <MenuSection onAddToReservation={handleAddToReservation} />
 
-      {/* Kahwa Bar & Lounge */}
-      <BarSection />
+        {/* Kahwa Bar & Lounge */}
+        <BarSection />
 
-      {/* Testimonials & Verified Reviews */}
-      <TestimonialsSection />
+        {/* Testimonials & Verified Reviews */}
+        <TestimonialsSection />
 
-      {/* Gallery */}
-      <GallerySection />
+        {/* Gallery */}
+        <GallerySection />
 
-      {/* Inline Reservation Engine */}
-      <ReservationSection selectedDishes={preSelectedDishes} />
+        {/* Inline Reservation Engine */}
+        <ReservationSection selectedDishes={preSelectedDishes} />
 
-      {/* Contact & Footer */}
-      <ContactFooter />
+        {/* Contact & Footer */}
+        <ContactFooter />
 
-      {/* Modal Reservation Engine Triggered from Navbar / Hero / Dishes */}
-      <ReservationSection
-        isOpenModal={isReservationModalOpen}
-        onCloseModal={() => setIsReservationModalOpen(false)}
-        selectedDishes={preSelectedDishes}
-      />
-    </div>
+        {/* Modal Reservation Engine Triggered from Navbar / Hero / Dishes */}
+        <ReservationSection
+          isOpenModal={isReservationModalOpen}
+          onCloseModal={() => setIsReservationModalOpen(false)}
+          selectedDishes={preSelectedDishes}
+        />
+
+        {/* Shopping Cart Drawer */}
+        <CartDrawer />
+
+        {/* Floating Toast Notifications */}
+        <ToastNotification />
+      </div>
+    </CartProvider>
   );
 }
-

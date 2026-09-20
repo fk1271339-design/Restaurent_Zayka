@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Quote, CheckCircle2, Award, MessageSquarePlus, Sparkles, UserCheck, X } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 
 export default function TestimonialsSection() {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -11,6 +12,8 @@ export default function TestimonialsSection() {
   const [newComment, setNewComment] = useState('');
   const [newDish, setNewDish] = useState('Rogan Josh');
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const { addToast } = useCart();
 
   const initialReviews = [
     {
@@ -102,6 +105,7 @@ export default function TestimonialsSection() {
     };
     setUserReviews([newRev, ...userReviews]);
     setIsSubmitted(true);
+    addToast('Thank you! Your royal review has been published.', 'success');
     setTimeout(() => {
       setIsSubmitted(false);
       setIsReviewModalOpen(false);
