@@ -3,9 +3,11 @@ import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import ScrollJourney from './components/ScrollJourney';
 import StorySection from './components/StorySection';
+import RoyalExperiencesCarousel from './components/RoyalExperiencesCarousel';
 import MenuSection from './components/MenuSection';
 import BarSection from './components/BarSection';
 import GallerySection from './components/GallerySection';
+import TestimonialsSection from './components/TestimonialsSection';
 import ReservationSection from './components/ReservationSection';
 import ContactFooter from './components/ContactFooter';
 
@@ -49,11 +51,17 @@ export default function App() {
       {/* Heritage & Story */}
       <StorySection />
 
+      {/* Royal Experiences & Showcases Carousel (Inspired by Sample Flyers) */}
+      <RoyalExperiencesCarousel onOpenReservation={() => setIsReservationModalOpen(true)} />
+
       {/* Royal Menu */}
       <MenuSection onAddToReservation={handleAddToReservation} />
 
       {/* Kahwa Bar & Lounge */}
       <BarSection />
+
+      {/* Testimonials & Verified Reviews */}
+      <TestimonialsSection />
 
       {/* Gallery */}
       <GallerySection />
@@ -73,3 +81,4 @@ export default function App() {
     </div>
   );
 }
+

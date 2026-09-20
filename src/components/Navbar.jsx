@@ -22,9 +22,11 @@ export default function Navbar({ onOpenReservation }) {
 
   const navLinks = [
     { name: 'Experience', href: '#journey' },
+    { name: 'Showcases', href: '#experiences' },
     { name: 'Heritage Story', href: '#story' },
     { name: 'Royal Menu', href: '#menu' },
     { name: 'Kahwa Bar', href: '#bar' },
+    { name: 'Reviews', href: '#reviews' },
     { name: 'Gallery', href: '#gallery' },
     { name: 'Reserve', href: '#reservation' },
   ];
